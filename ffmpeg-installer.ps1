@@ -34,9 +34,9 @@ if (-not $currentPath.Contains($installDir)) {
     Write-Host "Adding FFmpeg to system PATH..." -ForegroundColor Cyan
     [Environment]::SetEnvironmentVariable("Path", "$currentPath;$installDir", "Machine")
 }
-
+# remove the unnecessary files
 Write-Host "Cleaning up..." -ForegroundColor Cyan
-Remove-Item -Path $tempDir -Recurse -Force
+Remove-Item -Path $tempDir -Recurse -Force 
 
 try {
     $ffmpegVersion = Invoke-Expression "& '$installDir\ffmpeg.exe' -version" # this should work
